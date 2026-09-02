@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppMinhasCompras2026.Views.ListaProduto"
+             Title="Minhas Compras">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Somar" Clicked="ToolbarItem_Clicked_1" />
+        <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+            <Style x:Key="cabecalho_listview" TargetType="Grid">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Primary}}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto, *, Auto" Padding="10" RowSpacing="10">
+
+        <!-- Barra de Busca -->
+        <SearchBar Grid.Row="0"
+                   x:Name="txt_search"
+                   Placeholder="Busca de Produtos"
+                   TextChanged="txt_search_TextChanged" />
+
+        <!-- ListView com ContextActions e Header -->
+        <Frame Grid.Row="1" Padding="0" VerticalOptions="FillAndExpand">
+            <ListView x:Name="lst_produtos"
+                      IsPullToRefreshEnabled="True"
+                      Refreshing="lst_produtos_Refreshing"
+                      ItemSelected="lst_produtos_ItemSelected">
+
+                <ListView.Header>
+                    <Grid ColumnDefinitions="30, 100, 80, 50, 90"
+                          Style="{StaticResource Key=cabecalho_listview}">
+                        <Label Grid.Column="0" Text="ID" Padding="5" FontAttributes="Bold" />
+                        <Label Grid.Column="1" Text="Descrição" FontAttributes="Bold" />
+                        <Label Grid.Column="2" Text="Preço" FontAttributes="Bold" />
+                        <Label Grid.Column="3" Text="Qnt" FontAttributes="Bold" />
+                        <Label Grid.Column="4" Text="Total" FontAttributes="Bold" />
+                    </Grid>
+                </ListView.Header>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <!-- Ação de Contexto para Excluir o Registro -->
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Remover" Clicked="MenuItem_Clicked" IsDestructive="True" />
+                            </ViewCell.ContextActions>
+
+                            <Grid ColumnDefinitions="30, 100, 80, 50, 90">
+                                <Label Grid.Column="0" Text="{Binding Id}" Padding="5" />
+                                <Label Grid.Column="1" Text="{Binding Descricao}" />
+                                <Label Grid.Column="2" Text="{Binding Preco, StringFormat='{}{0:c}'}" />
+                                <Label Grid.Column="3" Text="{Binding Quantidade}" />
+                                <Label Grid.Column="4" Text="{Binding Total, StringFormat='{}{0:c}'}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Frame>
+
+        <!-- Exibição do Somatório Geral -->
+        <Frame Grid.Row="2" Padding="10" BackgroundColor="{StaticResource Primary}">
+            <Grid ColumnDefinitions="*, *">
+                <Label Text="Total Geral:" FontAttributes="Bold" TextColor="White" FontSize="16" />
+                <Label Grid.Column="1" x:Name="lblTotalGeral" Text="R$ 0,00" FontAttributes="Bold" TextColor="White" FontSize="16" HorizontalOptions="End" />
+            </Grid>
+        </Frame>
+
+    </Grid>
+</ContentPage>

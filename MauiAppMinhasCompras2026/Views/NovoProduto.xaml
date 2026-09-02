@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppMinhasCompras2026.Views.NovoProduto"
+             Title="Novo Produto"
+             BackgroundColor="#1A1A1A">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#FFFFFF" />
+                <Setter Property="Margin" Value="0,5,0,2" />
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="#222222" />
+                <Setter Property="TextColor" Value="#FFFFFF" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="HeightRequest" Value="45" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Salvar" 
+                     Priority="0" 
+                     Order="Primary" 
+                     Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="5" 
+                             Padding="20" 
+                             BackgroundColor="#1A1A1A">
+
+            <BoxView HeightRequest="5" 
+                     Color="#3498DB" 
+                     Margin="0,0,0,15" />
+
+            <Label Text="INFORMAÇÕES DO PRODUTO" 
+                   FontSize="18" 
+                   FontAttributes="Bold" 
+                   TextColor="#FFFFFF" 
+                   Margin="0,0,0,15"
+                   HorizontalOptions="Center" />
+
+            <Frame BackgroundColor="#2C2C2C" 
+                   CornerRadius="15" 
+                   Padding="20" 
+                   Margin="0,10,0,20"
+                   BorderColor="#3D3D3D"
+                   HasShadow="True">
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Label Text="Descrição do Produto" />
+                    <Entry x:Name="txt_descricao" 
+                           Placeholder="Digite a descrição do produto"
+                           PlaceholderColor="#888888" />
+
+                    <Label Text="Quantidade" />
+                    <Entry x:Name="txt_quantidade" 
+                           Keyboard="Numeric"
+                           Placeholder="Digite a quantidade"
+                           PlaceholderColor="#888888" />
+
+                    <Label Text="Preço Unitário" />
+                    <Entry x:Name="txt_preco" 
+                           Keyboard="Numeric"
+                           Placeholder="Digite o preço unitário"
+                           PlaceholderColor="#888888" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="#2C2C2C" 
+                   CornerRadius="10" 
+                   Padding="15"
+                   BorderColor="#3498DB"
+                   HasShadow="False">
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="💡 Dica" 
+                           FontAttributes="Bold" 
+                           TextColor="#3498DB"
+                           Margin="0"
+                           FontSize="14" />
+                    <Label Text="Preencha todos os campos corretamente antes de salvar." 
+                           FontAttributes="None"
+                           TextColor="#CCCCCC"
+                           Margin="0"
+                           FontSize="13" />
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
